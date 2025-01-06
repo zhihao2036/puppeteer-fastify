@@ -24,7 +24,7 @@ ENV \
 # installs, work.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros \
-    fonts-kacst fonts-freefont-ttf dbus dbus-x11
+    fonts-kacst fonts-freefont-ttf dbus dbus-x11 libc6
 
 # Add pptruser.
 RUN groupadd -r pptruser && useradd -u $PPTRUSER_UID -rm -g pptruser -G audio,video pptruser
@@ -37,7 +37,7 @@ COPY --from=build /usr/src/app/node_modules ./node_modules
 
 COPY --from=build /usr/src/app/dist ./dist
 
-ENV DBUS_SESSION_BUS_ADDRESS autolaunch:
+ENV DBUS_SESSION_BUS_ADDRESS=autolaunch:
 
 # Install system dependencies as root.
 USER root
@@ -47,7 +47,7 @@ USER root
 RUN PUPPETEER_CACHE_DIR=/home/pptruser/.cache/puppeteer \
   npx puppeteer browsers install chrome --install-deps
 
-# USER $PPTRUSER_UID
+USER $PPTRUSER_UID
 # # Generate THIRD_PARTY_NOTICES using chrome --credits.
 # RUN node -e "require('child_process').execSync(require('puppeteer').executablePath() + ' --credits', {stdio: 'inherit'})" > THIRD_PARTY_NOTICES
 

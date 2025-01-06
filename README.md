@@ -42,8 +42,20 @@ npx puppeteer browsers install chrome
 
 ## Deploy
 
+### Building the image
+
 ```bash
 docker build -t pupp-fast:v0.1 . -f Dockerfile
 
-docker run -i --init --rm --cap-add=SYS_ADMIN --name pupp-fast pupp-fast:v0.1 -p 3000:3000
+# arm platform(apple silicon)
+docker build --platform linux/amd64 -t pupp-fast:v0.5 . -f Dockerfile
+```
+
+### Running the image
+
+```bash
+docker run -i --init --rm --cap-add=SYS_ADMIN -p 3000:3000 --name pupp-fast pupp-fast:v0.1
+
+# arm platform(apple silicon)
+docker run --platform linux/amd64  -i --init --rm --cap-add=SYS_ADMIN -p 3000:3000 --name pupp-fast pupp-fast:v0.5
 ```
