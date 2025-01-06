@@ -1,0 +1,31 @@
+{
+  "name": "puppeteer-fastify",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/one-line-logger": "^2.0.1",
+    "@fastify/static": "^8.0.3",
+    "@sinclair/typebox": "^0.34.13",
+    "fastify": "^5.2.0",
+    "fastify-plugin": "^5.0.1",
+    "puppeteer": "^23.11.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-plugin-fastify": "^1.2.5"
+  }
+}
